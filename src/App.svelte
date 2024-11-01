@@ -1,39 +1,39 @@
-<script lang="ts">
-  import Greet from './lib/Greet.svelte'
+<script>
+  import { Router, Link, Route } from "svelte-routing";
+  import Dashboard from "./routes/Dashboard.svelte";
+  import Projects from "./routes/Projects.svelte";
+  import Tasks from "./routes/Tasks.svelte";
+  import Team from "./routes/Team.svelte";
+  import Components from "./routes/Components.svelte";
+
+  export let url = "";
 </script>
 
-<main class="container">
-  <h1>Welcome to Tauri!</h1>
-
-  <div class="row">
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo vite" alt="Vite Logo" />
-    </a>
-    <a href="https://tauri.app" target="_blank">
-      <img src="/tauri.svg" class="logo tauri" alt="Tauri Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank">
-      <img src="/svelte.svg" class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-
-  <p>
-    Click on the Tauri, Vite, and Svelte logos to learn more.
-  </p>
-
-  <div class="row">
-    <Greet />
-  </div>
-
-
-</main>
+<Router {url}>
+  <nav class="app-nav">
+    <Link style="padding: 0 0.5rem" to="/">Dashboard</Link>
+    <Link style="padding: 0 0.5rem" to="/projects">Projects</Link>
+    <Link style="padding: 0 0.5rem" to="/tasks">Tasks</Link>
+    <Link style="padding: 0 0.5rem" to="/team">Team</Link>
+    <Link style="padding: 0 0.5rem" to="/components">Components</Link>
+  </nav>
+  <main>
+    <Route path="/" component={Dashboard} />
+    <Route path="/projects" component={Projects} />
+    <Route path="/tasks" component={Tasks} />
+    <Route path="/team" component={Team} />
+    <Route path="/components" component={Components} />
+  </main>
+</Router>
 
 <style>
-  .logo.vite:hover {
-    filter: drop-shadow(0 0 2em #747bff);
+  .app-nav {
+    padding: 1rem;   
   }
-
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00);
-  }
+  /* .nav-link {
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 18px;
+    text-decoration: underline;
+  } */
 </style>
